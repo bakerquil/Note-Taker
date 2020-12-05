@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-require('./path.js')(app)
+require('./path')(app)
 
 app.listen(PORT, function(){
     console.log("listening on PORT:" + PORT)
