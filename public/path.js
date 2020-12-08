@@ -4,10 +4,11 @@ const path = require("path");
 module.exports = (app) => {
   fs.readFile("db/db.json", "utf8", function(err, res)  {
     if (err) throw err;
+    console.log(err);
     let note = JSON.parse(res);
 
     app.get("/api/notes", function (req, res) {
-       res.json(note);
+      return res.json(note);
     });
     app.post("/api/notes", function(req,res){
         let nNote = req.body // the new note will be the body of the request 
@@ -33,6 +34,7 @@ module.exports = (app) => {
     }); // 
     function updatePLS(){
         fs.writeFile("db/db.json",JSON.stringify(note,`\t`), function(err) {
+            console.log(err);
             if (err) throw err
             return true;
         });
